@@ -30,6 +30,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'remote',
       filename: 'remoteEntry.js',
+      remotes:{
+        container: "container@http://localhost:3000/remoteEntry.js",
+
+      },
       exposes: {
         // expose each component
         './CounterOne': './src/components/CounterOne',

@@ -1,15 +1,26 @@
-import { Button } from 'antd';
-import 'antd/dist/reset.css';
+import { Button, Card } from 'antd';
 import { useState } from 'react';
 import { useQuery } from "react-query";
 import '../index.css';
+import './counterOne.css';
+// @ts-ignore
+import useStore from "container/store";
+
+
 const Counter = () => {
-    const [count, setCount] = useState(0);
+    const { count, clear, user } = useStore();
+
+    const [counts, setCount] = useState(0);
     const { isLoading, error, data } = useQuery("repoData", () =>
         fetch("https://api.github.com/repos/tannerlinsley/react-query").then(
             (res) => res.json()
         )
     );
+    if (true) {
+        return <Card className='card' title="Sign up" bordered={false} style={{ width: 300 }}>
+            <p >{user.name} is logged in</p>
+        </Card>
+    }
 
     if (isLoading) return <div>Loading...</div>;
 
